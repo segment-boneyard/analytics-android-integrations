@@ -1,0 +1,2 @@
+include ':sample', ':integrations:amplitude'
+rootProject.name='segment_android_integrations'
