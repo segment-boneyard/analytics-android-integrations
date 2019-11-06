@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
+apply from: rootProject.file('dependencies.gradle')
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion versions.compileSdkVersion
+    buildToolsVersion versions.buildTools
     defaultConfig {
         applicationId "com.segment.analytics.android.integrations"
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -28,7 +29,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
-    implementation 'com.segment.analytics.android:analytics:4.5.0-beta.0'
+    implementation 'com.segment.analytics.android:analytics:'+ versions.anayticsSdkVersion
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

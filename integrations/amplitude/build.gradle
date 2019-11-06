@@ -18,14 +18,15 @@ ext.isRelease = hasProperty('release')
 
 apply plugin: 'com.android.library'
 apply plugin: 'com.f2prateek.javafmt'
+apply from: rootProject.file('dependencies.gradle')
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion versions.compileSdkVersion
+    buildToolsVersion versions.buildTools
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
     }
 
     compileOptions {
@@ -49,13 +50,13 @@ dependencies {
         google()
     }
 
-    api 'com.segment.analytics.android:analytics:4.5.0-beta.0'
+    api 'com.segment.analytics.android:analytics:' + versions.anayticsSdkVersion
     api 'com.amplitude:android-sdk:2.23.2'
 
-    testImplementation 'com.segment.analytics.android:analytics-tests:4.3.1'
+    testImplementation 'com.segment.analytics.android:analytics-tests:' + versions.analyticsTestVersion
     testImplementation 'junit:junit:4.12'
     testImplementation 'com.android.support.test:runner:1.0.2'
-    testImplementation 'org.mockito:mockito-core:2.28.0'
+    testImplementation 'org.mockito:mockito-core:' + versions.mockitoVersion
 
     // Required for local (non-android) testing
     testImplementation 'org.json:json:20180813'

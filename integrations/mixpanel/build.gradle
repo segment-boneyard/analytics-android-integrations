@@ -18,14 +18,15 @@ ext.isRelease = hasProperty('release')
 
 apply plugin: 'com.android.library'
 apply plugin: 'com.f2prateek.javafmt'
+apply from: rootProject.file('dependencies.gradle')
 
 android {
-  compileSdkVersion 28
+  compileSdkVersion versions.compileSdkVersion
 
 
   defaultConfig {
-    minSdkVersion 14
-    targetSdkVersion 28
+    minSdkVersion versions.minSdkVersion
+    targetSdkVersion versions.targetSdkVersion
   }
 
   compileOptions {
@@ -49,10 +50,10 @@ dependencies {
     google()
   }
 
-  api 'com.segment.analytics.android:analytics:4.3.1'
-  api 'com.mixpanel.android:mixpanel-android:5.6.3@aar'
+  api 'com.segment.analytics.android:analytics:'+ versions.anayticsSdkVersion
+  api 'com.mixpanel.android:mixpanel-android:5.6.5'
 
-  testImplementation 'com.segment.analytics.android:analytics-tests:4.3.1'
+  testImplementation 'com.segment.analytics.android:analytics-tests:' + versions.analyticsTestVersion
   testImplementation 'junit:junit:4.12'
   testImplementation 'org.robolectric:robolectric:3.3.2'
   testImplementation 'org.assertj:assertj-core:1.7.1'
