@@ -21,6 +21,7 @@ android {
 
 dependencies {
     implementation project(':integrations:amplitude')
+    implementation project(':integrations:mixpanel')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 

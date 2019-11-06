@@ -1,17 +1,17 @@
-buildscript {
-
-  repositories {
-    mavenCentral()
-    jcenter()
-    google()
-  }
-
-  dependencies {
-    classpath 'com.android.tools.build:gradle:3.4.1'
-    classpath 'com.f2prateek.javafmt:javafmt:0.1.6'
-    classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.11.0'
-  }
-}
+//buildscript {
+//
+//  repositories {
+//    mavenCentral()
+//    jcenter()
+//    google()
+//  }
+//
+//  dependencies {
+//    classpath 'com.android.tools.build:gradle:3.4.1'
+//    classpath 'com.f2prateek.javafmt:javafmt:0.1.6'
+//    classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.11.0'
+//  }
+//}
 
 // Use -Prelease or $ORG_GRADLE_PROJECT_RELEASE="true" to mark the project as a release
 ext.isRelease = hasProperty('release')
@@ -22,8 +22,9 @@ apply plugin: 'com.f2prateek.javafmt'
 android {
   compileSdkVersion 28
 
+
   defaultConfig {
-    minSdkVersion 16
+    minSdkVersion 14
     targetSdkVersion 28
   }
 
@@ -64,7 +65,6 @@ dependencies {
 }
 
 
-//apply from: rootProject.file('gradle/attach-jar.gradle')
-//apply from: rootProject.file('gradle/upload.gradle')
-//apply from: rootProject.file('gradle/sign.gradle')
-//apply from: rootProject.file('gradle/promote.gradle')
+apply from: rootProject.file('gradle/attach-jar.gradle')
+apply from: rootProject.file('gradle/upload.gradle')
+apply from: rootProject.file('gradle/sign.gradle')
