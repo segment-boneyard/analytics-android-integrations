@@ -33,7 +33,9 @@ import static com.segment.analytics.Analytics.LogLevel.VERBOSE;
 import static com.segment.analytics.Utils.createTraits;
 import static com.segment.analytics.android.integrations.amplitude.AmplitudeIntegration.getStringSet;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Matchers.isNull;
@@ -87,10 +89,10 @@ public class AmplitudeTest {
             .putValue("enableLocationListening", false)
             .putValue("useAdvertisingIdForDeviceId", true));
 
-    assertEquals(integration.trackAllPagesV2, true);
-    assertEquals(integration.trackAllPages, true);
-    assertEquals(integration.trackCategorizedPages, false);
-    assertEquals(integration.trackNamedPages, true);
+    assertTrue(integration.trackAllPagesV2);
+    assertTrue(integration.trackAllPages);
+    assertFalse(integration.trackCategorizedPages);
+    assertTrue(integration.trackNamedPages);
 
     verify(amplitude).initialize(application, "foo");
     verify(amplitude).enableForegroundTracking(application);
@@ -104,9 +106,9 @@ public class AmplitudeTest {
     integration =
         new AmplitudeIntegration(mockProvider, analytics, new ValueMap().putValue("apiKey", "foo"));
 
-    assertEquals(integration.trackAllPages, false);
-    assertEquals(integration.trackCategorizedPages, false);
-    assertEquals(integration.trackNamedPages, false);
+    assertFalse(integration.trackAllPages);
+    assertFalse(integration.trackCategorizedPages);
+    assertFalse(integration.trackNamedPages);
 
     verify(amplitude).initialize(application, "foo");
     verify(amplitude).enableForegroundTracking(application);
