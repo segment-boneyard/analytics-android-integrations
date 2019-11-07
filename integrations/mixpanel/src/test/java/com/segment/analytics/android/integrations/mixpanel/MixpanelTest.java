@@ -2,6 +2,7 @@ package com.segment.analytics.android.integrations.mixpanel;
 
 import android.app.Activity;
 import android.app.Application;
+import android.os.Build;
 import android.os.Bundle;
 import com.google.common.collect.ImmutableMap;
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
@@ -32,10 +33,9 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.rule.PowerMockRule;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-
 import static com.segment.analytics.Utils.createTraits;
 import static com.segment.analytics.android.integrations.mixpanel.MixpanelIntegration.filter;
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.argThat;
@@ -50,14 +50,13 @@ import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 18, manifest = Config.NONE)
+@Config( sdk = Build.VERSION_CODES.P, manifest = Config.NONE)
 @PowerMockIgnore({ "org.mockito.*", "org.robolectric.*", "android.*", "org.json.*" })
 @PrepareForTest(MixpanelAPI.class) public class MixpanelTest {
 
   @Rule public PowerMockRule rule = new PowerMockRule();
   @Mock MixpanelAPI mixpanel;
   @Mock Application context;
-  Logger logger;
   @Mock MixpanelAPI.People mixpanelPeople;
   @Mock Analytics analytics;
 
@@ -66,7 +65,7 @@ import static org.powermock.api.mockito.PowerMockito.when;
   @Before public void setUp() {
     initMocks(this);
     mockStatic(MixpanelAPI.class);
-    logger = Logger.with(Analytics.LogLevel.DEBUG);
+    Logger logger = Logger.with(Analytics.LogLevel.DEBUG);
     when(MixpanelAPI.getInstance(context, "foo")).thenReturn(mixpanel);
     when(mixpanel.getPeople()).thenReturn(mixpanelPeople);
     when(analytics.logger("Mixpanel")).thenReturn(logger);
@@ -294,7 +293,8 @@ import static org.powermock.api.mockito.PowerMockito.when;
         .traits(new Traits().putAge(25))
         .build());
     verify(mixpanel).identify("prateek");
-    verify(mixpanel).registerSuperProperties(jsonEq(new JSONObject(ImmutableMap.of("age", 25))));
+    verify(mixpanel).registerSuperProperties(jsonEq(new JSONObject(ImmutableMap
+            .of("age", 25))));
     verifyNoMoreMixpanelInteractions();
   }
 
@@ -304,7 +304,8 @@ import static org.powermock.api.mockito.PowerMockito.when;
         .traits(new Traits().putAge(25))
         .build());
     verify(mixpanel, never()).identify(anyString());
-    verify(mixpanel).registerSuperProperties(jsonEq(new JSONObject(ImmutableMap.of("age", 25))));
+    verify(mixpanel).registerSuperProperties(jsonEq(new JSONObject(ImmutableMap
+            .of("age", 25))));
     verifyNoMoreMixpanelInteractions();
   }
 
@@ -320,7 +321,8 @@ import static org.powermock.api.mockito.PowerMockito.when;
         .build());
 
     verify(mixpanel).identify("prateek");
-    verify(mixpanel).registerSuperProperties(jsonEq(new JSONObject(ImmutableMap.of("age", 25))));
+    verify(mixpanel).registerSuperProperties(jsonEq(new JSONObject(ImmutableMap
+            .of("age", 25))));
     verify(mixpanelPeople).identify("prateek");
     verify(mixpanelPeople).set(jsonEq(new JSONObject(ImmutableMap.of("age", 25))));
     verifyNoMoreMixpanelInteractions();
@@ -343,8 +345,9 @@ import static org.powermock.api.mockito.PowerMockito.when;
     expected.put("$first_name", traits.firstName());
     expected.put("$last_name", traits.lastName());
     expected.put("$name", traits.name());
-    expected.put("$username", traits.username());
     expected.put("$created", traits.createdAt());
+    expected.put("$username", traits.username());
+
 
     integration.identify(new IdentifyPayload.Builder()
         .userId("prateek")
@@ -455,7 +458,7 @@ import static org.powermock.api.mockito.PowerMockito.when;
   }
 
   public static JSONObject jsonEq(JSONObject expected) {
-    return argThat(new JSONObjectMatcher(expected));
+    return argThat( new JSONObjectMatcher(expected));
   }
 
   private static class JSONObjectMatcher extends TypeSafeMatcher<JSONObject> {
