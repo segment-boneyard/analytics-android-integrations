@@ -44,12 +44,6 @@ android {
 }
 
 dependencies {
-    repositories {
-        mavenCentral()
-        jcenter()
-        google()
-    }
-
     api 'com.segment.analytics.android:analytics:' + versions.anayticsSdkVersion
     api 'com.amplitude:android-sdk:2.23.2'
 

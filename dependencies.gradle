@@ -16,14 +16,15 @@ ext.versions = [
 
 
         //Test
-        mockitoVersion          : '2.28.0',
+        mockitoVersion          : '3.1.0',
         analyticsTestVersion    : '4.3.1',
         robolectric             : '4.3',
         assertJCore             : '2.6.0',
-        powerMock               : '1.6.2',
+        jsonAssert              : '1.5.0',
+        powerMock               : '2.0.4',
         powerMockModuleJunit4   : '2.0.2',
         powerMockModuleJunit4Rule : '2.0.2',
-        powerMockApiMockito     : '1.6.2',
+        powerMockApiMockito     : '2.0.2',
         powerMockClassLoadingXstream : '2.0.2',
 
 
