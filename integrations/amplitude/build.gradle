@@ -1,36 +1,22 @@
-
-buildscript {
-    repositories {
-//         mavenCentral()
-        jcenter()
-        google()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0'
-        classpath 'com.f2prateek.javafmt:javafmt:0.1.6'
-//        classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.11.0'
-    }
-}
-
 // Use -Prelease or $ORG_GRADLE_PROJECT_RELEASE="true" to mark the project as a release
 ext.isRelease = hasProperty('release')
 
 apply plugin: 'com.android.library'
 apply plugin: 'com.f2prateek.javafmt'
+apply from: rootProject.file('dependencies.gradle')
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.2'
+    compileSdkVersion versions.compileSdkVersion
+    buildToolsVersion versions.buildTools
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 28
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     lintOptions {
@@ -49,13 +35,13 @@ dependencies {
         google()
     }
 
-    api 'com.segment.analytics.android:analytics:4.5.0-beta.0'
+    api 'com.segment.analytics.android:analytics:' + versions.anayticsSdkVersion
     api 'com.amplitude:android-sdk:2.23.2'
 
-    testImplementation 'com.segment.analytics.android:analytics-tests:4.3.1'
+    testImplementation 'com.segment.analytics.android:analytics-tests:' + versions.analyticsTestVersion
     testImplementation 'junit:junit:4.12'
     testImplementation 'com.android.support.test:runner:1.0.2'
-    testImplementation 'org.mockito:mockito-core:2.28.0'
+    testImplementation 'org.mockito:mockito-core:' + versions.mockitoVersion
 
     // Required for local (non-android) testing
     testImplementation 'org.json:json:20180813'
