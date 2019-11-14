@@ -1,0 +1,30 @@
+ext.versions = [
+        // Project
+        minSdkVersion           : 16,
+        compileSdkVersion       : 28,
+        targetSdkVersion        : 28,
+        buildTools              : '28.0.3',
+
+
+        // Plugins
+        gradlePluginVersion     : '3.5.2',
+        nexusStagingPlugin      : '0.21.1',
+
+
+        //Segment android analytics
+        anayticsSdkVersion      : '4.5.0-beta.0',
+
+
+        //Test
+        mockitoVersion          : '3.1.0',
+        analyticsTestVersion    : '4.3.1',
+        robolectric             : '4.3',
+        assertJCore             : '2.6.0',
+        jsonAssert              : '1.5.0',
+        powerMock               : '2.0.4',
+        powerMockModuleJunit4   : '2.0.2',
+        powerMockModuleJunit4Rule : '2.0.2',
+        powerMockApiMockito     : '2.0.2',
+        powerMockClassLoadingXstream : '2.0.2',
+
+]
