@@ -10,6 +10,7 @@ ext.versions = [
         gradlePluginVersion     : '3.5.2',
         nexusStagingPlugin      : '0.21.1',
         spotlessPlugin          : '3.24.2',
+        versionPlugin           : '0.24.0',
 
 
         //Segment android analytics
