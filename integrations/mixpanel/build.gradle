@@ -1,0 +1,58 @@
+// Use -Prelease or $ORG_GRADLE_PROJECT_RELEASE="true" to mark the project as a release
+ext.isRelease = hasProperty('release')
+
+apply plugin: 'com.android.library'
+apply plugin: 'com.f2prateek.javafmt'
+
+android {
+  compileSdkVersion 28
+
+  defaultConfig {
+    minSdkVersion 16
+    targetSdkVersion 28
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  lintOptions {
+    abortOnError false
+  }
+
+  testOptions {
+    unitTests{
+      returnDefaultValues = true
+      includeAndroidResources = true
+    }
+  }
+}
+
+dependencies {
+  repositories {
+    jcenter()
+    mavenCentral()
+    google()
+  }
+
+  api 'com.segment.analytics.android:analytics:4.5.0-beta.0'
+  api 'com.mixpanel.android:mixpanel-android:5.6.5'
+
+  testImplementation 'com.segment.analytics.android:analytics-tests:4.3.1'
+  testImplementation 'junit:junit:4.12'
+  testImplementation 'org.robolectric:robolectric:4.3'
+  testImplementation 'org.skyscreamer:jsonassert:1.5.0'
+  testImplementation 'org.assertj:assertj-core:2.6.0'
+  testImplementation 'org.mockito:mockito-core:3.1.0'
+  testImplementation 'org.powermock:powermock-core:2.0.4'
+  testImplementation 'org.powermock:powermock-module-junit4:2.0.2'
+  testImplementation 'org.powermock:powermock-module-junit4-rule:2.0.2'
+  testImplementation 'org.powermock:powermock-api-mockito2:2.0.2'
+  testImplementation 'org.powermock:powermock-classloading-xstream:2.0.2'
+}
+
+
+apply from: rootProject.file('gradle/attach-jar.gradle')
+apply from: rootProject.file('gradle/upload.gradle')
+apply from: rootProject.file('gradle/sign.gradle')
