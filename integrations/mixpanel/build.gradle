@@ -51,3 +51,4 @@ dependencies {
 apply from: rootProject.file('gradle/attach-jar.gradle')
 apply from: rootProject.file('gradle/upload.gradle')
 apply from: rootProject.file('gradle/sign.gradle')
+apply from: rootProject.file('spotless.gradle')
