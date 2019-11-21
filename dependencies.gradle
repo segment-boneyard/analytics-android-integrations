@@ -9,8 +9,8 @@ ext.versions = [
         // Plugins
         gradlePluginVersion     : '3.5.2',
         nexusStagingPlugin      : '0.21.1',
-        spotlessPlugin          : '3.24.2',
-        versionPlugin           : '0.24.0',
+        spotlessPlugin          : '3.26.0',
+        versionPlugin           : '0.27.0',
 
 
         //Segment android analytics
@@ -20,13 +20,13 @@ ext.versions = [
         //Test
         mockitoVersion          : '3.1.0',
         analyticsTestVersion    : '4.3.1',
-        robolectric             : '4.3',
-        assertJCore             : '2.6.0',
+        robolectric             : '4.3.1',
+        assertJCore             : '3.14.0',
         jsonAssert              : '1.5.0',
         powerMock               : '2.0.4',
-        powerMockModuleJunit4   : '2.0.2',
-        powerMockModuleJunit4Rule : '2.0.2',
-        powerMockApiMockito     : '2.0.2',
-        powerMockClassLoadingXstream : '2.0.2',
+        powerMockModuleJunit4   : '2.0.4',
+        powerMockModuleJunit4Rule : '2.0.4',
+        powerMockApiMockito     : '2.0.4',
+        powerMockClassLoadingXstream : '2.0.4',
 
 ]
