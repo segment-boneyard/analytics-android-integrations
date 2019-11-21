@@ -101,8 +101,19 @@ class MixpanelIntegrationBuilder {
   }
 
   MixpanelIntegration createMixpanelIntegration() {
-    return new MixpanelIntegration(mixpanel, mixpanelPeople, isPeopleEnabled, consolidatedPageCalls,
-        trackAllPages, trackCategorizedPages, trackNamedPages, token, logger, increments,
-        setAllTraitsByDefault, peopleProperties, superProperties);
+    return new MixpanelIntegration(
+        mixpanel,
+        mixpanelPeople,
+        isPeopleEnabled,
+        consolidatedPageCalls,
+        trackAllPages,
+        trackCategorizedPages,
+        trackNamedPages,
+        token,
+        logger,
+        increments,
+        setAllTraitsByDefault,
+        peopleProperties,
+        superProperties);
   }
 }

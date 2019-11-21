@@ -1,5 +1,8 @@
 package com.segment.analytics.android.integrations.mixpanel;
 
+import static com.segment.analytics.internal.Utils.isNullOrEmpty;
+import static com.segment.analytics.internal.Utils.transform;
+
 import android.app.Activity;
 import android.os.Bundle;
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
@@ -21,9 +24,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.json.JSONObject;
-
-import static com.segment.analytics.internal.Utils.isNullOrEmpty;
-import static com.segment.analytics.internal.Utils.transform;
 
 public class MixpanelIntegration extends Integration<MixpanelAPI> {
   private static final String VIEWED_EVENT_FORMAT = "Viewed %s Screen";
