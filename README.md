@@ -10,7 +10,7 @@ Android Studio  version 3+
 
 Gradle version 5+
 
-#### 2. Clone the repo  
+#### 2. Clone the repo
 ```shell
 git clone https://github.com/segmentio/analytics-android-integrations.git
 ```
@@ -93,28 +93,3 @@ Version `X.0.0`: is the release when a backwards incompatible change is introduc
 #### 3 Include a well detailed title and description 
 
 ### Ready to go :rocket:
----
-
-### PR Template
-#### 
-**What does this PR do?**
-
-**Are there breaking changes in this PR?**
-
-**Has this been tested end-to-end? Please provide screenshots on how the fix now populates in the end tool. If not, what was done to test?**
-
-**Any background context you want to provide?**
-
-**Is there parity with the server-side/analytics.js integration (if applicable)?**
-
-**Does this require a metadata change? If so, please link the PR from https://github.com/segmentio/destination-scripts.**
-
-**What are the relevant tickets?**
-
-**Link to CC ticket**
-
-**List all the tests accounts you have used to make sure this change works**
-
-**Helpful Docs**
-
-**Version for this change**
