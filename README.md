@@ -78,7 +78,6 @@ Version `X.0.0`: is the release when a backwards incompatible change is introduc
 ## How to submit a PR 
 
 ### Commit Process
-
 #### 1 Branches should include ticket number e.g DAND-6-TASK-NAME
 #### 2 Commits should include ticket number and a verb for action e.g DAND-6-Fix - or DAND-6-Add or DAND-6-Update
 ---
@@ -110,17 +109,12 @@ Version `X.0.0`: is the release when a backwards incompatible change is introduc
 
 **Does this require a metadata change? If so, please link the PR from https://github.com/segmentio/destination-scripts.**
 
-
 **What are the relevant tickets?**
-
 
 **Link to CC ticket**
 
-
 **List all the tests accounts you have used to make sure this change works**
 
-
 **Helpful Docs**
-
 
 **Version for this change**

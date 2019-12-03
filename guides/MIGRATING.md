@@ -19,13 +19,15 @@ integrations/
 sampleapp/ 
 README.md
 LICENSE.md
-etc
+etc.
 ```
+
 #### 4. Set the destination up with the project and sync
 `project:settings.gradle` 
 ```groovy
 include ':integrations:firebase'
 ```
+
 #### 5. Remove the following from the destination
 `gradle`, `.circleci` folders, `.gitignore` and if `.buildscript` and `github` folders in the module directory because these folders are already in the `project` level
 
@@ -42,6 +44,7 @@ integrations/
         README.md
         etc
 ```
+
 #### 6. Remove the promote gradle plugin in the destination because it has already been implemented in the project level 
 `firebase:build.gradle` 
 ``` groovy
@@ -53,11 +56,13 @@ apply from: rootProject.file('gradle/promote.gradle')
 ``` groovy
 apply from: rootProject.file('spotless.gradle')
 ```
+
 #### 8. Apply `dependencies.gradle` in the destination. The `dependencies.gradle` is used to manage all dependency versions
 `firebase:build.gradle` 
 ``` groovy
 apply from: rootProject.file('dependencies.gradle')
 ```
+
 #### 9. Revamp the destination `build.gradle` to use depedencies.gradle
 `firebase:build.gradle` 
 ``` groovy
@@ -76,6 +81,7 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:' + versions.mockitoVersion
 }
 ```
+
 #### 10. Remove buildscripts  and dependencies {repositories} block in the destination build.gradle, because it has already been implemented in the project level 
 `firebase:build.gradle` 
 ``` groovy
