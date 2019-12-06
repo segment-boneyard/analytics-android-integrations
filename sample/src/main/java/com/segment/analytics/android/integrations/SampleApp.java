@@ -18,7 +18,6 @@ public class SampleApp extends Application {
     Analytics.Builder builder =
         new Analytics.Builder(this, ANALYTICS_WRITE_KEY)
             .use(AmplitudeIntegration.FACTORY)
-            .trackApplicationLifecycleEvents()
             .trackAttributionInformation()
             .recordScreenViews();
 
@@ -38,5 +37,6 @@ public class SampleApp extends Application {
             Log.d("Segment Sample", "Segment integration ready.");
           }
         });
+
   }
 }
