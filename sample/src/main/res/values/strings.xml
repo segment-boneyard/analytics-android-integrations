@@ -1,12 +1,15 @@
 <resources>
     <string name="app_name">segment_android_integrations</string>
-    <string name="page">Page</string>
-    <string name="screen">Screen</string>
-    <string name="track">Track</string>
-    <string name="alias">Alias</string>
-    <string name="group">Group</string>
-    <string name="identify">Identify</string>
+    <string name="identify">identify</string>
+    <string name="track">track</string>
+    <string name="page">page</string>
+    <string name="screen">screen</string>
+    <string name="group">group</string>
+    <string name="alias">alias</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="PACKAGE_NAME">com.segment.analytics.android.integrations</string>
 </resources>
+
