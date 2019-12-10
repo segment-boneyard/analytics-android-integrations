@@ -3,86 +3,97 @@ package com.segment.analytics.android.integrations.event;
 import com.google.gson.annotations.SerializedName;
 
 public class Traits {
-    @SerializedName("email")
-    private String email;
-    @SerializedName("name")
-    private String name;
-    @SerializedName("gender")
-    private String gender;
-    @SerializedName("age")
-    private int age;
-    @SerializedName("industry")
-    private String industry;
-    @SerializedName("employees")
-    private int employees;
-    @SerializedName("plan")
-    private String plan;
+  @SerializedName("email")
+  private String email;
 
+  @SerializedName("name")
+  private String name;
 
-    public Traits(String email, String name, String gender, int age,
-                  String industry, int employees, String plan) {
-        this.email = email;
-        this.name = name;
-        this.gender = gender;
-        this.age = age;
-        this.industry = industry;
-        this.employees = employees;
-        this.plan = plan;
-    }
+  @SerializedName("gender")
+  private String gender;
 
-    public String getEmail() {
-        return email;
-    }
+  @SerializedName("age")
+  private int age;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  @SerializedName("industry")
+  private String industry;
 
-    public String getName() {
-        return name;
-    }
+  @SerializedName("employees")
+  private int employees;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  @SerializedName("plan")
+  private String plan;
 
-    public String getGender() {
-        return gender;
-    }
+  public Traits(
+      String email,
+      String name,
+      String gender,
+      int age,
+      String industry,
+      int employees,
+      String plan) {
+    this.email = email;
+    this.name = name;
+    this.gender = gender;
+    this.age = age;
+    this.industry = industry;
+    this.employees = employees;
+    this.plan = plan;
+  }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public int getAge() {
-        return age;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getIndustry() {
-        return industry;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setIndustry(String industry) {
-        this.industry = industry;
-    }
+  public String getGender() {
+    return gender;
+  }
 
-    public int getEmployees() {
-        return employees;
-    }
+  public void setGender(String gender) {
+    this.gender = gender;
+  }
 
-    public void setEmployees(int employees) {
-        this.employees = employees;
-    }
+  public int getAge() {
+    return age;
+  }
 
-    public String getPlan() {
-        return plan;
-    }
+  public void setAge(int age) {
+    this.age = age;
+  }
 
-    public void setPlan(String plan) {
-        this.plan = plan;
-    }
+  public String getIndustry() {
+    return industry;
+  }
+
+  public void setIndustry(String industry) {
+    this.industry = industry;
+  }
+
+  public int getEmployees() {
+    return employees;
+  }
+
+  public void setEmployees(int employees) {
+    this.employees = employees;
+  }
+
+  public String getPlan() {
+    return plan;
+  }
+
+  public void setPlan(String plan) {
+    this.plan = plan;
+  }
 }

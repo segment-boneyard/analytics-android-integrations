@@ -11,12 +11,9 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
     getSupportActionBar().setTitle("Sample");
     SpecListFragment fragment = new SpecListFragment();
     getSupportFragmentManager().beginTransaction().replace(R.id.parentContainer, fragment).commit();
   }
-
-
-
 }
