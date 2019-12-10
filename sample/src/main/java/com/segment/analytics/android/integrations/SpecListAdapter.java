@@ -11,7 +11,7 @@ public class SpecListAdapter extends RecyclerView.Adapter<SpecListAdapter.SpecVi
   private List<String> specList;
   private SpecClickListener specClickListener;
 
-  public SpecListAdapter(List<String> specList, SpecClickListener specClickListener) {
+  SpecListAdapter(List<String> specList, SpecClickListener specClickListener) {
     this.specList = specList;
     this.specClickListener = specClickListener;
   }
@@ -30,7 +30,7 @@ public class SpecListAdapter extends RecyclerView.Adapter<SpecListAdapter.SpecVi
     specViewHolder.bind(string, specClickListener);
   }
 
-  public void setSpecList(List<String> specs) {
+  void setSpecList(List<String> specs) {
     specList = specs;
   }
 

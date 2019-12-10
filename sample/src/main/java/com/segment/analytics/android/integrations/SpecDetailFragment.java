@@ -104,8 +104,12 @@ public class SpecDetailFragment extends Fragment {
 
   private void track(Events events) {
     Analytics.with(getContext())
-        .track(events.getEvent(), new Properties().putTitle(events.getProperties().getTitle())
-        .putSku(events.getProperties().getSku()).putRevenue(events.getProperties().getRevenue()));
+        .track(
+            events.getEvent(),
+            new Properties()
+                .putTitle(events.getProperties().getTitle())
+                .putSku(events.getProperties().getSku())
+                .putRevenue(events.getProperties().getRevenue()));
   }
 
   private void screen(Events event) {

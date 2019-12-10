@@ -1,6 +1,6 @@
 package com.segment.analytics.android.integrations;
 
-public class JSONAsset {
+class JSONAsset {
 
   static final String IDENTITY_JSON_DATA =
       "{\n"
