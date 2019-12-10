@@ -40,9 +40,9 @@ public class JSONAsset {
           + "\"type\":\"track\",\n"
           + "\"event\":\"Registered\",\n"
           + "\"properties\":{\n"
-          + "\"title\":\"Intro to Analytics\",\n"
-          + "\"plan\":\"Pro Annual\",\n"
-          + "\"accountType\":\"Facebook\"\n"
+          + "\"title\":\"bag\",\n"
+          + "\"sku\":\"13d31\",\n"
+          + "\"revenue\":199.99\n"
           + "},\n"
           + "\"userId\":\"test-user-ru3j5q\"\n"
           + "}";
@@ -52,7 +52,7 @@ public class JSONAsset {
           + "\"type\":\"screen\",\n"
           + "\"name\":\"Home\",\n"
           + "\"properties\":{\n"
-          + "\"Feed Type\":\"private\"\n"
+          + "\"category\":\"fashion\"\n"
           + "},\n"
           + "\"userId\":\"test-user-ru3j5q\"\n"
           + "}";

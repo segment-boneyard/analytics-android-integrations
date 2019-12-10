@@ -104,13 +104,13 @@ public class SpecDetailFragment extends Fragment {
 
   private void track(Events events) {
     Analytics.with(getContext())
-        .track(events.getEvent(), new Properties().putValue("sku", "13d31").putRevenue(199.99));
+        .track(events.getEvent(), new Properties().putTitle(events.getProperties().getTitle())
+        .putSku(events.getProperties().getSku()).putRevenue(events.getProperties().getRevenue()));
   }
 
   private void screen(Events event) {
-    // category "Feed" and a property "Feed Length"
     Analytics.with(getContext())
-        .screen(event.getName(), new Properties().putValue("Feed Length", "26"));
+        .screen(event.getName(), new Properties().putCategory(event.getProperties().getCategory()));
   }
 
   private void page() {}
