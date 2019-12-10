@@ -41,6 +41,8 @@ dependencies {
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support:cardview-v7:28.0.0'
 
+    implementation 'com.google.code.gson:gson:2.8.6'
+
     implementation 'com.segment.analytics.android:analytics:'+ versions.anayticsSdkVersion
 
     testImplementation 'junit:junit:4.12'
