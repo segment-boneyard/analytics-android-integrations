@@ -1,4 +1,4 @@
-#### 1 How to set up Sample App
+####  How to set up Sample App
 - Add Analytics Dependency to `build.gradle`
 
 ```groovy
