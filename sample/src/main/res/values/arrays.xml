@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="spec_list">
+        <item>@string/identify</item>
+        <item>@string/track</item>
+        <item>@string/page</item>
+        <item>@string/screen</item>
+        <item>@string/group</item>
+        <item>@string/alias</item>
+    </array>
+</resources>
