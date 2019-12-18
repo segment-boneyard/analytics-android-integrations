@@ -7,7 +7,7 @@ ext.versions = [
 
 
         // Plugins
-        gradlePluginVersion     : '3.5.2',
+        gradlePluginVersion     : '3.5.3',
         nexusStagingPlugin      : '0.21.1',
         spotlessPlugin          : '3.26.0',
         versionPlugin           : '0.27.0',
