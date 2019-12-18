@@ -6,7 +6,8 @@ android.libraryVariants.all { variant ->
     def task = project.tasks.create("jar${name.capitalize()}", Jar)
     task.dependsOn(variant.javaCompileProvider)
     // Include Java classes
-    task.from(variant.javaCompileProvider.destinationDir)
+
+    task.from(variant.javaCompileProvider.get().destinationDir)
     artifacts.add('archives', task)
   }
 }
