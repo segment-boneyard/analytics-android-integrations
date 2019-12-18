@@ -12,7 +12,6 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:' + versions.gradlePluginVersion
         classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:' + versions.nexusStagingPlugin
-        classpath 'com.f2prateek.javafmt:javafmt:0.1.6'
         classpath 'com.diffplug.spotless:spotless-plugin-gradle:' + versions.spotlessPlugin
         classpath 'com.github.ben-manes:gradle-versions-plugin:' + versions.versionPlugin
         // NOTE: Do not place your application dependencies here; they belong
