@@ -3,10 +3,10 @@ android.libraryVariants.all { variant ->
   // Only attach a jar for non-debug build types.
   if (!variant.buildType.isDebuggable()) {
     def name = variant.buildType.name
-    def task = project.tasks.create "jar${name.capitalize()}", Jar
-    task.dependsOn variant.javaCompile
+    def task = project.tasks.create("jar${name.capitalize()}", Jar)
+    task.dependsOn(variant.javaCompileProvider)
     // Include Java classes
-    task.from variant.javaCompile.destinationDir
-    artifacts.add('archives', task);
+    task.from(variant.javaCompileProvider.destinationDir)
+    artifacts.add('archives', task)
   }
 }

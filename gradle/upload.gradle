@@ -71,7 +71,7 @@ afterEvaluate { project ->
   task androidJavadocs(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    classpath += project.android.libraryVariants.toList().first().javaCompile.classpath
+    classpath += project.android.libraryVariants.toList().first().javaCompileProvider.classpath
   }
 
   if (JavaVersion.current().isJava8Compatible()) {
@@ -84,7 +84,7 @@ afterEvaluate { project ->
 
   task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
     classifier = 'javadoc'
-    from androidJavadocs.destinationDir
+    from(androidJavadocs.destinationDir)
   }
 
   task androidSourcesJar(type: Jar) {
