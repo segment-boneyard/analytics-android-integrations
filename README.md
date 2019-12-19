@@ -1,6 +1,16 @@
 # analytics-android-integrations
 Monorepo storing Segment's analytics Android integrations. You can find additoinal documentation for this repo in the `guides` directory.
 
+## Usage
+You can open the root project on Android Studio. All integrations are included by default.
+
+### Linter and formatter
+We use [Spotless](https://github.com/diffplug/spotless) and [Android's linter](https://developer.android.com/studio/write/lint) to format our code, run:
+```bash
+$ ./gradlew lint spotlessCheck // Linter
+$ ./gradlew lintFix spotlessApply // Formatter
+```
+
 ## Migrating Destinations to the Monorepo
 You can find more information on migrating a destination [here](./guides/MIGRATING.md).
 

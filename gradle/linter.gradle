@@ -1,13 +1,16 @@
-apply plugin: "com.diffplug.gradle.spotless"
-spotless {
-  java {
-    target "**/*.java"
+// Use this in conjunction with android's linter
+// as $ ./gradlew lint[Fix] spotless(Check|Apply)
+apply(plugin: "com.diffplug.gradle.spotless")
+
+spotless({
+  java({
+    target("**/*.java")
     trimTrailingWhitespace()
     removeUnusedImports()
     googleJavaFormat()
     endWithNewline()
-  }
-  groovyGradle {
-    target '*.gradle', 'gradle/*.gradle'
-  }
-}
+  })
+  groovyGradle({
+    target('*.gradle', 'gradle/*.gradle')
+  })
+})
