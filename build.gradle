@@ -28,6 +28,9 @@ allprojects({ Project project ->
         jcenter()
     })
 
+    project.apply(from: rootProject.file('gradle/dependencies.gradle'))
+    project.apply(from: rootProject.file('gradle/linter.gradle'))
+
     project.ext.isIntegration = isIntegration(project)
 
     // Configuration for integrations
@@ -36,10 +39,32 @@ allprojects({ Project project ->
         project.apply(from: rootProject.file('gradle/attach-jar.gradle'))
         project.apply(from: rootProject.file('gradle/sign.gradle'))
         project.apply(from: rootProject.file('gradle/upload.gradle'))
+
+        // Android configuration
+        android({
+
+            compileSdkVersion(project.ext.versions.compileSdkVersion)
+            buildToolsVersion(project.ext.versions.buildTools)
+
+            defaultConfig({
+                minSdkVersion(project.ext.versions.minSdkVersion)
+                targetSdkVersion(project.ext.versions.targetSdkVersion)
+            })
+
+            compileOptions({
+                sourceCompatibility(JavaVersion.VERSION_1_8)
+                targetCompatibility(JavaVersion.VERSION_1_8)
+            })
+
+            testOptions({
+                unitTests({
+                    returnDefaultValues = true
+                    includeAndroidResources = true
+                })
+            })
+        })
     }
 
-    project.apply(from: rootProject.file('gradle/dependencies.gradle'))
-    project.apply(from: rootProject.file('gradle/linter.gradle'))
 })
 
 // Root project only plugins
