@@ -14,10 +14,6 @@ android {
     targetCompatibility JavaVersion.VERSION_1_8
   }
 
-  lintOptions {
-    abortOnError false
-  }
-
   testOptions {
     unitTests{
       returnDefaultValues = true
@@ -43,7 +39,5 @@ dependencies {
   testImplementation 'org.powermock:powermock-classloading-xstream:'+ versions.powerMockClassLoadingXstream
 }
 
-
-apply from: rootProject.file('gradle/attach-jar.gradle')
 apply from: rootProject.file('gradle/upload.gradle')
 apply from: rootProject.file('gradle/sign.gradle')

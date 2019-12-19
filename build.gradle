@@ -13,12 +13,10 @@ buildscript({
         classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:' + versions.nexusStagingPlugin
         classpath 'com.diffplug.spotless:spotless-plugin-gradle:' + versions.spotlessPlugin
         classpath 'com.github.ben-manes:gradle-versions-plugin:' + versions.versionPlugin
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 })
 
-def isIntegration(Project project) {
+def static isIntegration(Project project) {
     return project.projectDir.parent == new File("integrations").absolutePath
 }
 
@@ -30,12 +28,12 @@ allprojects({ Project project ->
         jcenter()
     })
 
-    project.ext.isIntegration = false
+    project.ext.isIntegration = isIntegration(project)
 
     // Configuration for integrations
-    if (isIntegration(project)) {
+    if (project.ext.isIntegration) {
         project.apply(plugin: 'com.android.library')
-        project.ext.isIntegration = true
+        project.apply(from: rootProject.file('gradle/attach-jar.gradle'))
     }
 
     project.apply(from: rootProject.file('gradle/dependencies.gradle'))

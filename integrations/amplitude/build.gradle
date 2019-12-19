@@ -16,10 +16,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    lintOptions {
-        abortOnError false
-    }
-
     testOptions {
         unitTests.returnDefaultValues = true
     }
@@ -39,7 +35,6 @@ dependencies {
     testImplementation 'org.json:json:20180813'
 }
 
-apply from: rootProject.file('gradle/attach-jar.gradle')
 apply from: rootProject.file('gradle/upload.gradle')
 apply from: rootProject.file('gradle/sign.gradle')
 
