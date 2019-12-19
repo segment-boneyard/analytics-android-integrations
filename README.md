@@ -1,5 +1,5 @@
 # analytics-android-integrations
-Monorepo storing Segment's analytics Android integrations. You can find additoinal documentation for this repo in the `guides` directory.
+Monorepo storing Segment's analytics Android integrations. You can find additional documentation for this repo in the `guides` directory.
 
 ## Usage
 You can open the root project on Android Studio. All integrations are included by default.
@@ -16,6 +16,18 @@ You can run all the tests using:
 ```bash
 $ ./gradlew test [--rerun-tasks]
 ```
+
+### Build
+You are required to sign your builds. To set up the signature, you need to export the following environment variables:
+```
+SIGNATURE_KEY_ID=<Key id>
+SIGNATURE_SECRET_FILE=<Path where the key lives>
+SIGNATURE_PASSWORD=<Password>
+```
+
+You can add these to the Android Studio configuration, or in the terminal. For more information see [here](https://docs.gradle.org/current/userguide/signing_plugin.html).
+
+
 
 ## Migrating Destinations to the Monorepo
 You can find more information on migrating a destination [here](./guides/MIGRATING.md).
