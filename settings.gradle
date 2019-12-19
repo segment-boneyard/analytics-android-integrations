@@ -6,7 +6,13 @@ def projects = [':sample']
 
 // Automatically add all integrations
 file('integrations/').traverse(type: FileType.DIRECTORIES, maxDepth: 0, { File directory ->
-    projects << ':integrations:' + directory.name
+    if (!directory.name.equals('build')) {
+        projects << ':' + directory.name
+    }
 })
 
 include(*projects)
+
+projects.each({ String name ->
+    project(name).projectDir = new File('integrations/' + name.substring(1))
+})
