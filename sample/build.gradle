@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply from: rootProject.file('dependencies.gradle')
 
 android {
     compileSdkVersion versions.compileSdkVersion
@@ -30,7 +29,7 @@ android {
 }
 
 dependencies {
-    implementation project(':integrations:amplitude')
+    implementation project(':amplitude')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 

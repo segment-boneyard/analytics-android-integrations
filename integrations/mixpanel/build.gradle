@@ -1,9 +1,6 @@
 // Use -Prelease or $ORG_GRADLE_PROJECT_RELEASE="true" to mark the project as a release
 ext.isRelease = hasProperty('release')
 
-apply plugin: 'com.android.library'
-apply from: rootProject.file('dependencies.gradle')
-
 android {
   compileSdkVersion versions.compileSdkVersion
 

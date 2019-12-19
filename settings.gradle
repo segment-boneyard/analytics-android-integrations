@@ -3,16 +3,18 @@ import groovy.io.FileType
 rootProject.name='segment_android_integrations'
 
 def projects = [':sample']
+def integrations = []
 
 // Automatically add all integrations
 file('integrations/').traverse(type: FileType.DIRECTORIES, maxDepth: 0, { File directory ->
-    if (!directory.name.equals('build')) {
-        projects << ':' + directory.name
+    if (directory.name != 'build') {
+        integrations << ':' + directory.name
     }
 })
 
-include(*projects)
+include(*projects, *integrations)
 
-projects.each({ String name ->
-    project(name).projectDir = new File('integrations/' + name.substring(1))
+integrations.each({ String name ->
+    ProjectDescriptor project = project(name)
+    project.projectDir = new File('integrations/' + name.substring(1))
 })

@@ -1,14 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: './versionsPlugin.gradle'
-buildscript {
-    apply from: './dependencies.gradle'
-    repositories {
+apply(from: './versionsPlugin.gradle')
+buildscript({
+    apply(from: 'gradle/dependencies.gradle')
+    repositories({
         mavenCentral()
         google()
         jcenter()
+    })
 
-        
-    }
     dependencies {
         classpath 'com.android.tools.build:gradle:' + versions.gradlePluginVersion
         classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:' + versions.nexusStagingPlugin
@@ -17,19 +16,31 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
-}
+})
 
-// Root project only plugins
-apply from: rootProject.file('gradle/promote.gradle')
+def isIntegration(Project project) {
+    return project.projectDir.parent == new File("integrations").absolutePath
+}
 
 // All projects plugins
-allprojects {
-    repositories {
+allprojects({ Project project ->
+    repositories({
+        mavenCentral()
         google()
         jcenter()
-        
+    })
+
+    project.ext.isIntegration = false
+
+    // Configuration for integrations
+    if (isIntegration(project)) {
+        project.apply(plugin: 'com.android.library')
+        project.ext.isIntegration = true
     }
 
-    apply from: rootProject.file('gradle/linter.gradle')
+    project.apply(from: rootProject.file('gradle/dependencies.gradle'))
+    project.apply(from: rootProject.file('gradle/linter.gradle'))
+})
 
-}
+// Root project only plugins
+apply(from: rootProject.file('gradle/promote.gradle'))
