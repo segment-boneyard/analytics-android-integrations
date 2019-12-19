@@ -35,6 +35,7 @@ allprojects({ Project project ->
         project.apply(plugin: 'com.android.library')
         project.apply(from: rootProject.file('gradle/attach-jar.gradle'))
         project.apply(from: rootProject.file('gradle/sign.gradle'))
+        project.apply(from: rootProject.file('gradle/upload.gradle'))
     }
 
     project.apply(from: rootProject.file('gradle/dependencies.gradle'))

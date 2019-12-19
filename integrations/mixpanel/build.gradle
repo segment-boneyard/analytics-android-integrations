@@ -38,5 +38,3 @@ dependencies {
   testImplementation 'org.powermock:powermock-api-mockito2:'+ versions.powerMockApiMockito
   testImplementation 'org.powermock:powermock-classloading-xstream:'+ versions.powerMockClassLoadingXstream
 }
-
-apply from: rootProject.file('gradle/upload.gradle')

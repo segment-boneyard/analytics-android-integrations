@@ -34,5 +34,3 @@ dependencies {
     // Required for local (non-android) testing
     testImplementation 'org.json:json:20180813'
 }
-
-apply from: rootProject.file('gradle/upload.gradle')

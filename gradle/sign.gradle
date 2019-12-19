@@ -1,28 +1,18 @@
 
-
 def static getSignatureConfig(String name) {
     def value = System.getenv(name)
     if (value == null || value.isEmpty()) {
         throw new InvalidUserDataException(String.format("Signature not properly configured. Set the envvar %s and try again. More info in the README.md", name))
     }
+    return value
 }
 
+// We inject the signature configuration from env vars
 gradle.taskGraph.whenReady({ taskGraph ->
-
     if (taskGraph.allTasks.any({ Task task -> task instanceof Sign })) {
-
-        // We inject the signature configuration from env vars
-        def id = getSignatureConfig("SIGNATURE_KEY_ID")
-        def file = getSignatureConfig("SIGNATURE_SECRET_FILE")
-        def password = getSignatureConfig("SIGNATURE_PASSWORD")
-
-        allprojects({ Project project ->
-            project.ext.signing = [
-                    keyId: id,
-                    secretKeyRingFile: file,
-                    password: password
-            ]
-        })
+        project.ext.'signing.keyId' = getSignatureConfig("SIGNATURE_KEY_ID")
+        project.ext.'signing.secretKeyRingFile' = getSignatureConfig("SIGNATURE_SECRET_FILE")
+        project.ext.'signing.password' = getSignatureConfig("SIGNATURE_PASSWORD")
     }
 })
 
