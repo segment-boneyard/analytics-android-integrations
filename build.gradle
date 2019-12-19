@@ -19,17 +19,17 @@ buildscript {
     }
 }
 
+// Root project only plugins
 apply from: rootProject.file('gradle/promote.gradle')
 
-
+// All projects plugins
 allprojects {
     repositories {
         google()
         jcenter()
         
     }
-}
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+    apply from: rootProject.file('gradle/linter.gradle')
+
 }

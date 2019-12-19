@@ -5,8 +5,9 @@ spotless {
     trimTrailingWhitespace()
     removeUnusedImports()
     googleJavaFormat()
-    // optional: you can specify a specific version and/or switch to AOSP style
-//    googleJavaFormat('1.1').aosp()
     endWithNewline()
+  }
+  groovyGradle {
+    target '*.gradle', 'gradle/*.gradle'
   }
 }
