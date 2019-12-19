@@ -11,6 +11,12 @@ $ ./gradlew lint spotlessCheck // Linter
 $ ./gradlew lintFix spotlessApply // Formatter
 ```
 
+### Tests
+You can run all the tests using:
+```bash
+$ ./gradlew test [--rerun-tasks]
+```
+
 ## Migrating Destinations to the Monorepo
 You can find more information on migrating a destination [here](./guides/MIGRATING.md).
 
@@ -61,28 +67,20 @@ Version `X.0.0`: is the release when a backwards incompatible change is introduc
 
 ### Before Submitting a PR
 
-#### 1 Label: Ready to merge
-- [x] Check if all tests pass
+- [x] Run linter and formatter
+```bash
+$ ./gradle lint spotlessCheck
+$ ./gradle lintFix spotlessApply
 ```
-./gradlew test
+
+- [x] Check if all tests pass
+```bash
+$ ./gradlew test
 ```
 - [x] Check if implementation works according to the PR descriptions
 - [x] Check if there are breaking changes in this PR
 - [x] Check if the new changes could potentially break anything in the future.
-- [x] Code style check
-```
-./gradlew spotlessApply
-```
-- [x] Check if there are any structural or architectural changes 
-- [x] Check for overall best practices
-----
-#### 2 Label: WIP
-- [x] Check if implementation works according to the PR descriptions
-- [x] Code style check
-```
-./gradlew spotlessApply
-```
-- [x] Check if there are any structural or architectural changes 
+- [x] Check if there are any structural or architectural changes
 - [x] Check for overall best practices
 
 ## How to submit a PR 
