@@ -27,7 +27,18 @@ SIGNATURE_PASSWORD=<Password>
 
 You can add these to the Android Studio configuration, or in the terminal. For more information see [here](https://docs.gradle.org/current/userguide/signing_plugin.html).
 
+When that's ready, you can run the build command:
+```bash
+$ ./gradlew build jarRelease
+```
 
+### Release
+You can release SNAPSHOTS (with your own credentials) running:
+```bash
+$ ./gradlew uploadArchives
+```
+
+For releasing production versions, please check our Segment's internal documentation.
 
 ## Migrating Destinations to the Monorepo
 You can find more information on migrating a destination [here](./guides/MIGRATING.md).
@@ -35,8 +46,7 @@ You can find more information on migrating a destination [here](./guides/MIGRATI
 ## Setup Android local environment :memo:
 #### 1. Requirements:
 Android Studio  version 3+
-
-Gradle version 5+
+Gradle version 6+
 
 #### 2. Clone the repo
 ```shell
