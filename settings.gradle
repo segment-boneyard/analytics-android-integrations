@@ -7,7 +7,7 @@ def integrations = []
 
 // Automatically add all integrations
 file('integrations/').traverse(type: FileType.DIRECTORIES, maxDepth: 0, { File directory ->
-    if (directory.name != 'build') {
+    if (directory.name != 'build' && !directory.name.startsWith('.')) {
         integrations << ':' + directory.name
     }
 })
