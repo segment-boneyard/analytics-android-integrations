@@ -27,6 +27,9 @@ afterEvaluate({ Project project ->
 
         pom.groupId = GROUP
         pom.artifactId = POM_ARTIFACT_ID
+
+        // TODO: Fixme
+        def isRelease = false
         pom.version = isRelease ? VERSION.replace('-SNAPSHOT', '') : VERSION
 
         repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/", {

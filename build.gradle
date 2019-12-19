@@ -63,6 +63,27 @@ allprojects({ Project project ->
                 })
             })
         })
+
+        // Shared dependencies
+        dependencies({
+
+            api('com.segment.analytics.android:analytics:' + project.ext.versions.anayticsSdkVersion)
+
+            testImplementation('com.segment.analytics.android:analytics-tests:' + versions.analyticsTestVersion)
+            testImplementation('junit:junit:4.12')
+            testImplementation('com.android.support.test:runner:1.0.2')
+            testImplementation('org.mockito:mockito-core:' + versions.mockitoVersion)
+            testImplementation('org.robolectric:robolectric:'+ versions.robolectric)
+            testImplementation('org.powermock:powermock-core:'+ versions.powerMock)
+            testImplementation('org.powermock:powermock-module-junit4:'+ versions.powerMockModuleJunit4)
+            testImplementation('org.powermock:powermock-module-junit4-rule:'+ versions.powerMockModuleJunit4Rule)
+            testImplementation('org.powermock:powermock-api-mockito2:'+ versions.powerMockApiMockito)
+            testImplementation('org.powermock:powermock-classloading-xstream:'+ versions.powerMockClassLoadingXstream)
+
+            // Required for local (non-android) testing
+            testImplementation('org.json:json:20190722')
+        })
+
     }
 
 })
