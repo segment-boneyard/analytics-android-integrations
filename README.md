@@ -88,6 +88,8 @@ Version `1.Y.0`: is the release when a backwards compatible feature is introduce
 Version `X.0.0`: is the release when a backwards incompatible change is introduced to the integration SDK. `X` must  be incremented while the `minor` and `patch` version numbers must be reset to 0. i.e  `2.0.0`
 
 ### Before Submitting a PR
+**Important** PRs from non-Segment employees that change circleci or buildkite configuration (CI) will be
+rejected automatically. Do not change the CI configuration.
 
 - [x] Run linter and formatter
 ```bash
@@ -114,7 +116,7 @@ $ ./gradlew test
 ### Before Submitting PR Requirements
 #### 1 You must run spotless for code formatting before committing
 ```
-./gradlew spotlessApply
+./gradlew lintFix spotlessApply
 ```
 #### 2 You must run the tests, ensuring they all pass
 ```
