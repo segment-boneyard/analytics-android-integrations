@@ -13,6 +13,12 @@ jobs:
           name: Verify configuration changes (only Segment employees are allowed to do them)
           command: |
             set -e
+
+            if [ "$CIRCLE_BRANCH" == "master" ]; then {
+              echo "Disabled check on master. Skipping.";
+              exit 0;
+            } fi;
+
             wget -qO - https://raw.githubusercontent.com/segmentio/analytics-android-integrations/master/.circleci/config.yml | cmp - .circleci/config.yml
       - run:
           name: Create folders
