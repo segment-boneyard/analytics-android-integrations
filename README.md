@@ -125,3 +125,16 @@ $ ./gradlew test
 #### 3 Include a well detailed title and description 
 
 ### Ready to go :rocket:
+
+## How to review a PR
+Here's a checklist of what to look for when reviewing a PR:
+- [x] No changes have been made to `.circleci`.
+- [x] No changes have been made to `.buildkite`.
+- [x] CircleCI SaaS has completed successfully.
+- [x] Buildkite CI has completed successfully (only for non-forked repos).
+- [x] There is *enough* testing coverage for the changes.
+- [x] If the change is updating an integration's SDK, the Changelog link is included in the description of the PR.
+- [x] Big changes are split on multiple commits.
+- [x] The version has changed following SemVer for functional changes.
+
+If any of this checks fail, the PR will be rejected.
