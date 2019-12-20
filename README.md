@@ -1,4 +1,7 @@
 # analytics-android-integrations
+
+[![CircleCI](https://circleci.com/gh/segmentio/analytics-android-integrations/tree/master.svg?style=svg)](https://circleci.com/gh/segmentio/analytics-android-integrations/tree/master)
+
 Monorepo storing Segment's analytics Android integrations. You can find additional documentation for this repo in the `guides` directory.
 
 ## Usage
@@ -88,6 +91,8 @@ Version `1.Y.0`: is the release when a backwards compatible feature is introduce
 Version `X.0.0`: is the release when a backwards incompatible change is introduced to the integration SDK. `X` must  be incremented while the `minor` and `patch` version numbers must be reset to 0. i.e  `2.0.0`
 
 ### Before Submitting a PR
+**Important** PRs from non-Segment employees that change circleci or buildkite configuration (CI) will be
+rejected automatically. Do not change the CI configuration.
 
 - [x] Run linter and formatter
 ```bash
@@ -114,7 +119,7 @@ $ ./gradlew test
 ### Before Submitting PR Requirements
 #### 1 You must run spotless for code formatting before committing
 ```
-./gradlew spotlessApply
+./gradlew lintFix spotlessApply
 ```
 #### 2 You must run the tests, ensuring they all pass
 ```
@@ -123,3 +128,16 @@ $ ./gradlew test
 #### 3 Include a well detailed title and description 
 
 ### Ready to go :rocket:
+
+## How to review a PR
+Here's a checklist of what to look for when reviewing a PR:
+- [x] No changes have been made to `.circleci`.
+- [x] No changes have been made to `.buildkite`.
+- [x] CircleCI SaaS has completed successfully.
+- [x] Buildkite CI has completed successfully (only for non-forked repos).
+- [x] There is *enough* testing coverage for the changes.
+- [x] If the change is updating an integration's SDK, the Changelog link is included in the description of the PR.
+- [x] Big changes are split on multiple commits.
+- [x] The version has changed following SemVer for functional changes.
+
+If any of this checks fail, the PR will be rejected.
