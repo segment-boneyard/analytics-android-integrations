@@ -35,6 +35,8 @@ allprojects({ Project project ->
 
     // Configuration for integrations
     if (project.ext.isIntegration) {
+        project.ext.integrationName = project.name.substring(1)
+
         project.apply(plugin: 'com.android.library')
         project.apply(from: rootProject.file('gradle/attach-jar.gradle'))
         project.apply(from: rootProject.file('gradle/sign.gradle'))

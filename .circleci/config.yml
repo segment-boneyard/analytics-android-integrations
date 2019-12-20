@@ -40,6 +40,9 @@ jobs:
             - /usr/local/android-sdk-linux/platforms/android-28
             - /usr/local/android-sdk-linux/build-tools/28.0.0
             - /usr/local/android-sdk-linux/extras/android/m2repository
+      - store_artifacts:
+          path: build/reports/profile/
+          destination: reports
 
 workflows:
   version: 2
