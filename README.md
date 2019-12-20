@@ -1,4 +1,7 @@
 # analytics-android-integrations
+
+[![CircleCI](https://circleci.com/gh/segmentio/analytics-android-integrations/tree/master.svg?style=svg)](https://circleci.com/gh/segmentio/analytics-android-integrations/tree/master)
+
 Monorepo storing Segment's analytics Android integrations. You can find additional documentation for this repo in the `guides` directory.
 
 ## Usage
