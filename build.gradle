@@ -1,36 +1,92 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: './versionsPlugin.gradle'
-buildscript {
-    apply from: './dependencies.gradle'
-    repositories {
+apply(from: './versionsPlugin.gradle')
+buildscript({
+    apply(from: 'gradle/dependencies.gradle')
+    repositories({
         mavenCentral()
         google()
         jcenter()
+    })
 
-        
-    }
     dependencies {
         classpath 'com.android.tools.build:gradle:' + versions.gradlePluginVersion
         classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:' + versions.nexusStagingPlugin
-        classpath 'com.f2prateek.javafmt:javafmt:0.1.6'
         classpath 'com.diffplug.spotless:spotless-plugin-gradle:' + versions.spotlessPlugin
         classpath 'com.github.ben-manes:gradle-versions-plugin:' + versions.versionPlugin
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
+})
+
+def static isIntegration(Project project) {
+    return project.projectDir.parent == new File("integrations").absolutePath
 }
 
-apply from: rootProject.file('gradle/promote.gradle')
-
-
-allprojects {
-    repositories {
+// All projects plugins
+allprojects({ Project project ->
+    repositories({
+        mavenCentral()
         google()
         jcenter()
-        
-    }
-}
+    })
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+    project.apply(from: rootProject.file('gradle/dependencies.gradle'))
+    project.apply(from: rootProject.file('gradle/linter.gradle'))
+
+    project.ext.isIntegration = isIntegration(project)
+
+    // Configuration for integrations
+    if (project.ext.isIntegration) {
+        project.apply(plugin: 'com.android.library')
+        project.apply(from: rootProject.file('gradle/attach-jar.gradle'))
+        project.apply(from: rootProject.file('gradle/sign.gradle'))
+        project.apply(from: rootProject.file('gradle/upload.gradle'))
+
+        // Android configuration
+        android({
+
+            compileSdkVersion(project.ext.versions.compileSdkVersion)
+            buildToolsVersion(project.ext.versions.buildTools)
+
+            defaultConfig({
+                minSdkVersion(project.ext.versions.minSdkVersion)
+                targetSdkVersion(project.ext.versions.targetSdkVersion)
+            })
+
+            compileOptions({
+                sourceCompatibility(JavaVersion.VERSION_1_8)
+                targetCompatibility(JavaVersion.VERSION_1_8)
+            })
+
+            testOptions({
+                unitTests({
+                    returnDefaultValues = true
+                    includeAndroidResources = true
+                })
+            })
+        })
+
+        // Shared dependencies
+        dependencies({
+
+            api('com.segment.analytics.android:analytics:' + project.ext.versions.anayticsSdkVersion)
+
+            testImplementation('com.segment.analytics.android:analytics-tests:' + versions.analyticsTestVersion)
+            testImplementation('junit:junit:4.12')
+            testImplementation('com.android.support.test:runner:1.0.2')
+            testImplementation('org.mockito:mockito-core:' + versions.mockitoVersion)
+            testImplementation('org.robolectric:robolectric:'+ versions.robolectric)
+            testImplementation('org.powermock:powermock-core:'+ versions.powerMock)
+            testImplementation('org.powermock:powermock-module-junit4:'+ versions.powerMockModuleJunit4)
+            testImplementation('org.powermock:powermock-module-junit4-rule:'+ versions.powerMockModuleJunit4Rule)
+            testImplementation('org.powermock:powermock-api-mockito2:'+ versions.powerMockApiMockito)
+            testImplementation('org.powermock:powermock-classloading-xstream:'+ versions.powerMockClassLoadingXstream)
+
+            // Required for local (non-android) testing
+            testImplementation('org.json:json:20190722')
+        })
+
+    }
+
+})
+
+// Root project only plugins
+apply(from: rootProject.file('gradle/promote.gradle'))

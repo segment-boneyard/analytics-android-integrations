@@ -1,54 +1,6 @@
-// Use -Prelease or $ORG_GRADLE_PROJECT_RELEASE="true" to mark the project as a release
-ext.isRelease = hasProperty('release')
+dependencies({
+  api('com.mixpanel.android:mixpanel-android:5.6.5')
 
-apply plugin: 'com.android.library'
-apply plugin: 'com.f2prateek.javafmt'
-apply from: rootProject.file('dependencies.gradle')
-
-android {
-  compileSdkVersion versions.compileSdkVersion
-
-  defaultConfig {
-    minSdkVersion versions.minSdkVersion
-    targetSdkVersion versions.targetSdkVersion
-  }
-
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-  }
-
-  lintOptions {
-    abortOnError false
-  }
-
-  testOptions {
-    unitTests{
-      returnDefaultValues = true
-      includeAndroidResources = true
-    }
-  }
-}
-
-dependencies {
-  api 'com.segment.analytics.android:analytics:'+ versions.anayticsSdkVersion
-  api 'com.mixpanel.android:mixpanel-android:5.6.5'
-
-  testImplementation 'com.segment.analytics.android:analytics-tests:' + versions.analyticsTestVersion
-  testImplementation 'junit:junit:4.12'
-  testImplementation 'org.robolectric:robolectric:'+ versions.robolectric
-  testImplementation 'org.skyscreamer:jsonassert:' + versions.jsonAssert
-  testImplementation 'org.assertj:assertj-core:'+ versions.assertJCore
-  testImplementation 'org.mockito:mockito-core:'+ versions.mockitoVersion
-  testImplementation 'org.powermock:powermock-core:'+ versions.powerMock
-  testImplementation 'org.powermock:powermock-module-junit4:'+ versions.powerMockModuleJunit4
-  testImplementation 'org.powermock:powermock-module-junit4-rule:'+ versions.powerMockModuleJunit4Rule
-  testImplementation 'org.powermock:powermock-api-mockito2:'+ versions.powerMockApiMockito
-  testImplementation 'org.powermock:powermock-classloading-xstream:'+ versions.powerMockClassLoadingXstream
-}
-
-
-apply from: rootProject.file('gradle/attach-jar.gradle')
-apply from: rootProject.file('gradle/upload.gradle')
-apply from: rootProject.file('gradle/sign.gradle')
-apply from: rootProject.file('spotless.gradle')
+  testImplementation('org.skyscreamer:jsonassert:' + versions.jsonAssert)
+  testImplementation('org.assertj:assertj-core:'+ versions.assertJCore)
+})

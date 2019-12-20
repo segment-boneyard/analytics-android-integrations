@@ -1,5 +1,44 @@
 # analytics-android-integrations
-Monorepo storing Segment's analytics Android integrations. You can find additoinal documentation for this repo in the `guides` directory.
+Monorepo storing Segment's analytics Android integrations. You can find additional documentation for this repo in the `guides` directory.
+
+## Usage
+You can open the root project on Android Studio. All integrations are included by default.
+
+### Linter and formatter
+We use [Spotless](https://github.com/diffplug/spotless) and [Android's linter](https://developer.android.com/studio/write/lint) to format our code, run:
+```bash
+$ ./gradlew lint spotlessCheck // Linter
+$ ./gradlew lintFix spotlessApply // Formatter
+```
+
+### Tests
+You can run all the tests using:
+```bash
+$ ./gradlew test [--rerun-tasks]
+```
+
+### Build
+You are required to sign your builds. To set up the signature, you need to export the following environment variables:
+```
+SIGNATURE_KEY_ID=<Key id>
+SIGNATURE_SECRET_FILE=<Path where the key lives>
+SIGNATURE_PASSWORD=<Password>
+```
+
+You can add these to the Android Studio configuration, or in the terminal. For more information see [here](https://docs.gradle.org/current/userguide/signing_plugin.html).
+
+When that's ready, you can run the build command:
+```bash
+$ ./gradlew build jarRelease
+```
+
+### Release
+You can release SNAPSHOTS (with your own credentials) running:
+```bash
+$ ./gradlew uploadArchives
+```
+
+For releasing production versions, please check our Segment's internal documentation.
 
 ## Migrating Destinations to the Monorepo
 You can find more information on migrating a destination [here](./guides/MIGRATING.md).
@@ -7,8 +46,7 @@ You can find more information on migrating a destination [here](./guides/MIGRATI
 ## Setup Android local environment :memo:
 #### 1. Requirements:
 Android Studio  version 3+
-
-Gradle version 5+
+Gradle version 6+
 
 #### 2. Clone the repo
 ```shell
@@ -51,28 +89,20 @@ Version `X.0.0`: is the release when a backwards incompatible change is introduc
 
 ### Before Submitting a PR
 
-#### 1 Label: Ready to merge
-- [x] Check if all tests pass
+- [x] Run linter and formatter
+```bash
+$ ./gradle lint spotlessCheck
+$ ./gradle lintFix spotlessApply
 ```
-./gradlew test
+
+- [x] Check if all tests pass
+```bash
+$ ./gradlew test
 ```
 - [x] Check if implementation works according to the PR descriptions
 - [x] Check if there are breaking changes in this PR
 - [x] Check if the new changes could potentially break anything in the future.
-- [x] Code style check
-```
-./gradlew spotlessApply
-```
-- [x] Check if there are any structural or architectural changes 
-- [x] Check for overall best practices
-----
-#### 2 Label: WIP
-- [x] Check if implementation works according to the PR descriptions
-- [x] Code style check
-```
-./gradlew spotlessApply
-```
-- [x] Check if there are any structural or architectural changes 
+- [x] Check if there are any structural or architectural changes
 - [x] Check for overall best practices
 
 ## How to submit a PR 

@@ -1,2 +1,20 @@
-include ':sample', ':integrations:amplitude', ':integrations:mixpanel'
+import groovy.io.FileType
+
 rootProject.name='segment_android_integrations'
+
+def projects = [':sample']
+def integrations = []
+
+// Automatically add all integrations
+file('integrations/').traverse(type: FileType.DIRECTORIES, maxDepth: 0, { File directory ->
+    if (directory.name != 'build' && !directory.name.startsWith('.')) {
+        integrations << ':' + directory.name
+    }
+})
+
+include(*projects, *integrations)
+
+integrations.each({ String name ->
+    ProjectDescriptor project = project(name)
+    project.projectDir = new File('integrations/' + name.substring(1))
+})

@@ -14,86 +14,89 @@
  * limitations under the License.
  */
 
-apply plugin: 'maven'
+apply(plugin: 'maven')
 
-afterEvaluate { project ->
-  uploadArchives {
-    repositories {
-      mavenDeployer {
-        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+afterEvaluate({ Project project ->
+  uploadArchives({
+    repositories({
+      mavenDeployer({
+        beforeDeployment({ MavenDeployment deployment -> signing.signPom(deployment) })
 
         def userName = System.getenv("NEXUS_USERNAME")
         def password = System.getenv("NEXUS_PASSWORD")
 
         pom.groupId = GROUP
         pom.artifactId = POM_ARTIFACT_ID
+
+        // TODO: Fixme
+        def isRelease = false
         pom.version = isRelease ? VERSION.replace('-SNAPSHOT', '') : VERSION
 
-        repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/", {
           authentication(userName: userName, password: password)
-        }
-        snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        })
+        snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/", {
           authentication(userName: userName, password: password)
-        }
+        })
 
-        pom.project {
+        pom.project({
           name POM_NAME
           packaging POM_PACKAGING
           description POM_DESCRIPTION
           url POM_URL
 
-          scm {
+          scm({
             url POM_SCM_URL
             connection POM_SCM_CONNECTION
             developerConnection POM_SCM_DEV_CONNECTION
-          }
+          })
 
-          licenses {
-            license {
+          licenses({
+            license({
               name POM_LICENCE_NAME
               url POM_LICENCE_URL
               distribution POM_LICENCE_DIST
-            }
-          }
+            })
+          })
 
-          developers {
-            developer {
+          developers({
+            developer({
               id POM_DEVELOPER_ID
               name POM_DEVELOPER_NAME
-            }
-          }
-        }
-      }
-    }
-  }
+            })
+          })
+        })
+      })
+    })
+  })
 
-
-  task androidJavadocs(type: Javadoc) {
+  task(androidJavadocs(type: Javadoc, {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    classpath += project.android.libraryVariants.toList().first().javaCompile.classpath
-  }
+    classpath += project.android.libraryVariants.toList().first().javaCompileProvider.get().classpath
+  }))
 
   if (JavaVersion.current().isJava8Compatible()) {
-    allprojects {
-      tasks.withType(Javadoc) {
+    allprojects({
+      tasks.withType(Javadoc, {
         options.addStringOption('Xdoclint:none', '-quiet')
-      }
-    }
+      })
+    })
   }
 
-  task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+  task(androidJavadocsJar(type: Jar, dependsOn: androidJavadocs, {
     classifier = 'javadoc'
-    from androidJavadocs.destinationDir
-  }
+    from(androidJavadocs.destinationDir)
+  }))
 
-  task androidSourcesJar(type: Jar) {
+  task(androidSourcesJar(type: Jar, {
     classifier = 'sources'
-    from android.sourceSets.main.java.sourceFiles
-  }
+    from(android.sourceSets.main.java.sourceFiles)
+  }))
 
-  artifacts {
-    archives androidSourcesJar
-    archives androidJavadocsJar
-  }
-}
+  artifacts({
+    archives(androidSourcesJar)
+    archives(androidJavadocsJar)
+  })
+
+})
