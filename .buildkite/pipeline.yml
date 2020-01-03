@@ -1,0 +1,14 @@
+env:
+  SEGMENT_CONTEXTS: 'aws-credentials'
+steps:
+  - label: 'Lint and Test'
+    commands:
+      - ./gradlew lint spotlessCheck
+      - ./gradlew check test --profile 
+    plugins:
+      docker#v3.3.0:
+        image: circleci/android:api-28
+        user: root
+        environment:
+            - "ANDROID_HOME=/home/circleci/android"
+            - "CIRCLE_JDK_VERSION=oraclejdk8"
