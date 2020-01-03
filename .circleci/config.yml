@@ -20,6 +20,7 @@ jobs:
             } fi;
 
             wget -qO - https://raw.githubusercontent.com/segmentio/analytics-android-integrations/master/.circleci/config.yml | cmp - .circleci/config.yml
+            wget -qO - https://raw.githubusercontent.com/segmentio/analytics-android-integrations/master/.buildkite/pipeline.yml | cmp - .buildkite/pipeline.yml
       - run:
           name: Create folders
           command: mkdir -p /home/circleci/android/licenses
