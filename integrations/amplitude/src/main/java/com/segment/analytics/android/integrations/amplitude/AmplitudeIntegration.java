@@ -255,6 +255,9 @@ public class AmplitudeIntegration extends Integration<AmplitudeClient> {
       String stringValue = String.valueOf(value);
       identify.set(key, stringValue);
     }
+    if (value instanceof String[]) {
+      identify.set(key, (String[]) value);
+    }
   }
 
   @Override
